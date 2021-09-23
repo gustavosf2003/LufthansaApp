@@ -1,14 +1,19 @@
 <template>
-  <div id="app">
-    <b-tag type="is-info">First</b-tag>
-    <router-link to="/companies">Companies</router-link>|
-    <router-view/>
+  <div>
+    <Navbar/>
+    <div class="container is-fluid mt-3">
+      <router-view/>
+    </div>
   </div>
 </template>
 
 <script>
+import Navbar from '../src/components/Navbar.vue'
 export default {
   name: "App",
+  components:{
+    Navbar
+  }
 };
 </script>
 
