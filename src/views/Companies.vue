@@ -1,14 +1,16 @@
 <template>
   <div>
-    <b-message :type="this.notification.status == 0 ? 'is-success' : 'is-danger'" auto-close v-if="notification.msg">
-      {{ notification.msg }}
-    </b-message>
+    <Message :msg="this.notification.msg" :status="this.notification.status"/>
     <b-button label="Adicionar voo" type="is-primary" size="is-medium" @click="isCardModalActive = true" />
     <b-modal v-model="isCardModalActive" :width="640">
       <form action="" @submit="saveFlight">
         <div class="modal-card" style="width: auto">
           <header class="modal-card-head">
             <p class="modal-card-title">Adicionar voo</p>
+            <button
+              type="button"
+              class="delete"
+              @click="closeModal"/>
           </header>
           <section class="modal-card-body">
             <div class="columns">
@@ -83,8 +85,12 @@
 </template>
 
 <script>
+import Message from "../components/Message.vue"
 export default {
   title:"Companies",
+  components:{
+    Message
+  },
   data() {
     return {
       isCardModalActive: false,
@@ -123,19 +129,23 @@ export default {
           tax: this.tax
         };
         const dataJson = JSON.stringify(data)
-        const req = await fetch("http://localhost:300/flights",{
+        const req = await fetch("http://localhost:3000/flights",{
           method: "POST",
           headers: { "Content-Type": "application/json" },
           body: dataJson
         })
         const res = await req.json()
         this.notification.msg = `Voo Nº${res.id} criado com sucesso`
+        this.closeModal()
         this.notification.status = 0
       }catch{
         this.notification.msg = "OOPS! Ocorreu um erro ao criar o voo"
         this.notification.status = 1
       }
     },
+    closeModal(){
+      this.isCardModalActive =  false
+    }
   }
 }
 </script>
