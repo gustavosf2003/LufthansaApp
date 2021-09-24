@@ -9,6 +9,8 @@
     "backend": "json-server --watch db/db.json"
   },
   "dependencies": {
+    "@fortawesome/fontawesome-free": "^5.15.4",
+    "@mdi/font": "^6.1.95",
     "buefy": "^0.9.10",
     "bulma": "^0.9.3",
     "core-js": "^3.6.5",
