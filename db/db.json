@@ -1,31 +1,31 @@
 {
-    "flights":[
-        {
-            "id": 1,
-            "name": "A330",
-            "company": "TAP",
-            "companyCountry": "Portugal",
-            "origin": "São Paulo",
-            "destiny": "Lisbon",
-            "scale": false,
-            "hours": 8.5,
-            "price": 2500,
-            "tax": 1.012
-        }
-    ],
-    "bookings":[
-        {
-            "id": 1,
-            "name": "Gustavo",
-            "lastName": "Ferreira",
-            "age": 17,
-            "gender": 1,
-            "address": "Rua alice manholer piteri",
-            "cpf": "38941469821",
-            "premium": false,
-            "card": "16791230",
-            "firstFlight": "27/10/2021",
-            "secondFliht": "03/11/2021"
-        }
-    ]
+  "flights": [
+    {
+      "id": 1,
+      "name": "A330",
+      "company": "TAP",
+      "companyCountry": "Portugal",
+      "origin": "São Paulo",
+      "destiny": "Lisbon",
+      "duration": "2021-09-23T05:18:00.808Z",
+      "scale": "não",
+      "price": 2500,
+      "tax": 1.012
+    }
+  ],
+  "bookings": [
+    {
+      "id": 1,
+      "name": "Gustavo",
+      "lastName": "Ferreira",
+      "age": 17,
+      "gender": 1,
+      "address": "Rua alice manholer piteri",
+      "cpf": "38941469821",
+      "premium": false,
+      "card": "16791230",
+      "firstFlight": "27/10/2021",
+      "secondFliht": "03/11/2021"
+    }
+  ]
 }
