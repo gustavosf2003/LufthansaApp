@@ -81,15 +81,18 @@
         </div>
       </form>
     </b-modal>
+    <Companies/>
   </div>
 </template>
 
 <script>
 import Message from "../components/Message.vue"
+import Companies from "../components/tables/Companies.vue"
 export default {
   title:"Companies",
   components:{
-    Message
+    Message,
+    Companies
   },
   data() {
     return {
@@ -139,6 +142,7 @@ export default {
         this.closeModal()
         this.notification.status = 0
       }catch{
+        this.closeModal()
         this.notification.msg = "OOPS! Ocorreu um erro ao criar o voo"
         this.notification.status = 1
       }
