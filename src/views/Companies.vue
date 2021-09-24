@@ -112,6 +112,7 @@ export default {
       file: {},
       price: 0,
       tax: 0,
+      flights: {},
     }
   },
   methods:{
@@ -150,6 +151,6 @@ export default {
     closeModal(){
       this.isCardModalActive =  false
     }
-  }
+  },
 }
 </script>

@@ -13,6 +13,19 @@
       "price": "456",
       "tax": 1.03,
       "id": 1
+    },
+    {
+      "name": "fses",
+      "company": "sefs",
+      "companyCountry": "sefs",
+      "origin": "São Paulo",
+      "destiny": "fsfesef",
+      "duration": "2021-09-24T21:22:48.167Z",
+      "scale": "",
+      "currency": "$",
+      "price": "1",
+      "tax": 1.09,
+      "id": 2
     }
   ],
   "bookings": [
