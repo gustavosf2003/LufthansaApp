@@ -1,6 +1,54 @@
 <template>
     <section class="mt-3">
-        <b-table :data="flights" :columns="columns" :striped="true" :hoverable="true" :mobile-cards="true"></b-table>
+        <div class="table-container">
+            <table class="table is-striped is-hoverable is-fullwidth" >
+            <thead>
+                <tr>
+                <th>ID</th>
+                <th>Avião</th>
+                <th>Destino</th>
+                <th>Companhia</th>
+                <th>Sede</th>
+                <th>Duração</th>
+                <th>Escala</th>
+                <th>Valor</th>
+                <th>Taxa</th>
+                <th>Apagar</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr v-for="f in flights" :key="f.id">
+                <th>{{ f.id  }}</th>
+                <td class="is-uppercase">{{ f.name  }}</td>
+                <td class="is-capitalized">{{ f.destiny  }}</td>
+                <td class="is-capitalized">{{ f.company  }}</td>
+                <td class="is-capitalized">{{ f.companyCountry  }}</td>
+                <td>
+                    <span class="tag is-primary">{{ f.duration }}</span>
+                </td>
+                <td>
+                    <span>
+                        <b-icon
+                            pack="fas"
+                            :icon="f.scale === 'sim' ? 'check' : 'times'">
+                        </b-icon>
+                    </span>
+                </td>
+                <td>
+                    <span class="tag is-primary">{{ f.currency + ' ' +  f.price }}</span>
+                </td>
+                <td>{{ f.tax  }}</td>
+                <td>
+                    <button @click="deleteFlight(f.id)" class="button is-danger is-outlined is-small">
+                        <span class="icon is-small">
+                        <i class="fas fa-times"></i>
+                        </span>
+                    </button>
+                </td>
+                </tr>
+            </tbody>
+            </table>
+        </div>
     </section>
 </template>
 
@@ -12,46 +60,7 @@
                 data,
                 isEmpty: false,
                 flights: {},
-                columns: [
-                    {
-                        field: 'id',
-                        label: 'ID',
-                        width: '40',
-                        numeric: true
-                    },
-                    {
-                        field: 'destiny',
-                        label: 'Destino',
-                    },
-                    {
-                        field: 'company',
-                        label: 'Empresa',
-                    },
-                    {
-                        field: 'companyCountry',
-                        label: 'Sede',
-                        centered: true
-                    },
-                    {
-                        field: 'duration',
-                        label: 'Duração',
-                        centered: true
-                    },
-                    {
-                        field: 'scale',
-                        label: 'Escala',
-                    },
-                    {
-                        field: 'tax',
-                        label: 'Taxa',
-                        class: 'has-text-link'
-                    },
-                    {
-                        field: 'price',
-                        label: 'Valor',
-                        centered: true,
-                    }
-                ]
+                isCardModalActive: false
             }
         },
         methods:{
@@ -59,16 +68,22 @@
                 const req = await fetch("http://localhost:3000/flights")
                 const flights = await req.json()
                 this.flights = flights
+            },
+            async deleteFlight(id){
+                const req = await fetch(`http://localhost:3000/flights/${id}`,{
+                    method: 'DELETE'
+                });
+                const data = await req.json()
+                this.getFlights()
             }
-        },
-        props:{
-            reload: Number
         },
         mounted(){
             this.getFlights()
-            if(reload == 1){
-                this.getFlights()
-            }
         }
     }
 </script>
+<style scoped>
+td,th{
+    text-align: center !important;
+}
+</style>
