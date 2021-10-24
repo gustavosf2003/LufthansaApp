@@ -15,7 +15,7 @@
           <section class="modal-card-body">
             <div class="columns">
               <div class="column">
-                <b-field label="Voo" >
+                <b-field label="Aeronave" >
                   <b-input placeholder="ex. A330" required v-model="name"></b-input>
                 </b-field>
               </div>
@@ -33,11 +33,38 @@
                 <b-input placeholder="ex. Alemanha" required v-model="companyCountry"></b-input>
               </b-field>
             </div>
+            <div >
+                <b-field label="Tempo de voo">
+                    <b-select placeholder="Selecione" icon="clock" v-model="duration">
+                      <option value="00:00">00:00</option>
+                      <option value="01:00">01:00</option>
+                      <option value="02:00">02:00</option>
+                      <option value="03:00">03:00</option>
+                      <option value="04:00">04:00</option>
+                      <option value="05:00">05:00</option>
+                      <option value="06:00">06:00</option>
+                      <option value="07:00">07:00</option>
+                      <option value="08:00">08:00</option>
+                      <option value="09:00">09:00</option>
+                      <option value="10:00">10:00</option>
+                      <option value="11:00">11:00</option>
+                      <option value="11:00">12:00</option>
+                      <option value="13:00">13:00</option>
+                      <option value="14:00">14:00</option>
+                      <option value="16:00">16:00</option>
+                      <option value="17:00">17:00</option>
+                      <option value="18:00">18:00</option>
+                      <option value="19:00">19:00</option>
+                      <option value="20:00">20:00</option>
+                      <option value="21:00">21:00</option>
+                      <option value="22:00">22:00</option>
+                    </b-select>
+                </b-field>
+
+            </div>
+            <hr>
             <div class="columns">
-              <b-field horizontal class="column" label="Duração:">
-                <b-timepicker required inline icon="clock" v-model="duration"></b-timepicker>
-              </b-field>
-              <b-field horizontal required class="column mt-2" label="Escala:">
+              <b-field  required class="column" label="Escala:">
                 <b-radio-button v-model="scale" type="is-success is-outlined" native-value="sim">
                   <b-icon icon="check"></b-icon>
                   Sim
@@ -47,7 +74,40 @@
                   Não
                 </b-radio-button>
               </b-field>
+              <b-field label="Motivo" class="column" v-if="scale == 'sim'">
+                <b-select placeholder="Tempo de escala" icon="airplane" v-model="reason">
+                  <option value="Abastecer a aeronave">Abastecer a aeronave</option>
+                  <option value="Troca de aeronave">Troca de aeronave</option>
+                  <option value="Troca de companhia">Troca de companhia</option>
+                </b-select>
+              </b-field>
             </div>
+            <div class="columns" v-if="scale == 'sim'">
+              <b-field class="column is-three-fifths" label="Lugar">
+                <b-input placeholder="ex. Londres" v-model="scalePlace"></b-input>
+              </b-field>
+              <b-field label="Tempo" class="column">
+            <b-select placeholder="Selecione" icon="clock" v-model="scaleTime">
+                  <option value="00:00">00:00</option>
+                  <option value="01:00">01:00</option>
+                  <option value="02:00">02:00</option>
+                  <option value="03:00">03:00</option>
+                  <option value="04:00">04:00</option>
+                  <option value="05:00">05:00</option>
+                  <option value="06:00">06:00</option>
+                  <option value="07:00">07:00</option>
+                  <option value="08:00">08:00</option>
+                  <option value="09:00">09:00</option>
+                  <option value="10:00">10:00</option>
+                  <option value="11:00">11:00</option>
+                  <option value="11:00">12:00</option>
+                  <option value="13:00">13:00</option>
+                  <option value="14:00">14:00</option>
+                  <option value="15:00">15:00</option>
+            </b-select>
+              </b-field>
+            </div>
+            <hr>
             <div class="columns">
               <b-field label="Valor:" class="column">
                 <b-select placeholder="Moeda" v-model="currency" required>
@@ -107,7 +167,10 @@ export default {
       destiny: '',
       origin: 'São Paulo',
       scale: '',
-      duration : new Date(),
+      reason:'',
+      scalePlace:'',
+      scaleTime:'',
+      duration : new Date().getHours(),
       currency: '',
       file: {},
       price: 0,
@@ -127,6 +190,9 @@ export default {
           destiny: this.destiny,
           duration: this.duration,
           scale: this.scale,
+          reason: this.reason,
+          scalePlace: this.scalePlace,
+          scaleTime: this.scaleTime,
           currency: this.currency,
           file: this.file.name,
           price: this.price,

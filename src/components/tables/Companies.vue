@@ -24,14 +24,16 @@
                 <td class="is-capitalized">{{ f.company  }}</td>
                 <td class="is-capitalized">{{ f.companyCountry  }}</td>
                 <td>
-                    <span class="tag is-primary">{{ f.duration }}</span>
+                    <span class="tag is-primary">{{ f.duration}}</span>
                 </td>
                 <td>
                     <span>
-                        <b-icon
-                            pack="fas"
-                            :icon="f.scale === 'sim' ? 'check' : 'times'">
-                        </b-icon>
+                        <b-tooltip :label="`${f.scaleTime}h (${f.scalePlace}) - ${f.reason}`" position="is-top">
+                            <b-icon
+                                pack="fas"
+                                :icon="f.scale === 'sim' ? 'check' : 'times'">
+                            </b-icon>
+                        </b-tooltip>
                     </span>
                 </td>
                 <td>
