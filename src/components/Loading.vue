@@ -2,7 +2,7 @@
   <div>
       <button @click="openLoading">sss</button>
         <b-loading :is-full-page="isFullPage" v-model="isLoading">
-            <img src="/img/splash.gif" style="margin-right:200px;width:1000px;" alt="Loading Airport">
+            <img class="loader" src="/svg/loader.svg" alt="Loading">
         </b-loading>
   </div>
 </template>
@@ -30,5 +30,10 @@ name:"Loading",
 </script>
 
 <style>
-
+.loader{
+  width: 100px;
+  height: 100px;
+  margin: 20px;
+  display:inline-block;
+}
 </style>

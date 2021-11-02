@@ -24,11 +24,11 @@
                 <td class="is-capitalized">{{ f.company  }}</td>
                 <td class="is-capitalized">{{ f.companyCountry  }}</td>
                 <td>
-                    <span class="tag is-primary">{{ f.duration}}</span>
+                    <span class="tag label">{{ f.duration}} h</span>
                 </td>
                 <td>
                     <span>
-                        <b-tooltip :label="`${f.scaleTime}h (${f.scalePlace}) - ${f.reason}`" position="is-top">
+                        <b-tooltip type="is-warning" :label="`${f.scaleTime}h (${f.scalePlace}) - ${f.reason}`" position="is-top">
                             <b-icon
                                 pack="fas"
                                 :icon="f.scale === 'sim' ? 'check' : 'times'">
@@ -37,7 +37,7 @@
                     </span>
                 </td>
                 <td>
-                    <span class="tag is-primary">{{ f.currency + ' ' +  f.price }}</span>
+                    <span class="tag label">{{ f.currency + ' ' +  f.price }}</span>
                 </td>
                 <td>{{ f.tax  }}</td>
                 <td>
@@ -87,5 +87,12 @@
 <style scoped>
 td,th{
     text-align: center !important;
+}
+.label{
+    background-color: #05164D;
+    color: #FFF;
+}
+.label:hover{
+    color: #FFF;
 }
 </style>

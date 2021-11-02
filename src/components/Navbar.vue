@@ -1,35 +1,25 @@
 <template>
   <div id="nav">
-    <b-navbar>
+    <b-navbar class="back"  shadow transparent active>
         <template #brand>
-            <b-navbar-item>
+            <b-navbar-item class="ml-5">
                 <router-link to="/">
-                    <img
-                        src="https://raw.githubusercontent.com/buefy/buefy/dev/static/img/buefy-logo.png"
-                        alt="Lightweight UI components for Vue.js based on Bulma"
-                    >
+                    <div class="container">
+                        <img class="img" src="/img/logo.png">
+                        <h1 class="title">Lufthansa</h1>
+                    </div>
                 </router-link>
             </b-navbar-item>
         </template>
-        <template #start>
-            <b-navbar-item>
-                <router-link to="/">Home</router-link>
+        <template #end >
+            <b-navbar-item active="false">
+                <router-link class="subItems" to="/">Home</router-link>
             </b-navbar-item>
-            <b-navbar-item>
-                <router-link to="/companies">Companies</router-link>
+            <b-navbar-item active="false"> 
+                <router-link class="subItems" to="/companies">Companies</router-link>
             </b-navbar-item>
-            <b-navbar-item>
-                <router-link to="/master">Master</router-link>
-            </b-navbar-item>
-        </template>
-
-        <template #end>
-            <b-navbar-item tag="div">
-                <div class="buttons">
-                    <router-link class="button is-primary" to="/login">
-                    <strong>Log in</strong>
-                    </router-link>
-                </div>
+            <b-navbar-item active="false" class="mr-5">
+                <router-link class="subItems" to="/master">Master</router-link>
             </b-navbar-item>
         </template>
     </b-navbar>
@@ -41,3 +31,27 @@ export default {
 name:"Navbar",
 }
 </script>
+<style scoped>
+.title{
+    font-size: 1.7rem;
+    font-weight: 700;
+    color: white;
+    padding-left: 0.2rem;
+}
+.subItems{
+    font-size: 1em;
+    color: #FFF;
+    
+}
+.subItems:hover{
+    font-size: 1.05em;
+}
+.container{
+    display: flex;
+    align-items: center;
+}
+.back{
+    background: #05164D;
+    height: 70px;
+}
+</style>

@@ -4,7 +4,7 @@
         <b-field>
             <b-button
                 label="Launch loading"
-                type="is-primary"
+                class="label"
                 size="is-medium"
                 @click="loader" />
         </b-field>
@@ -32,6 +32,12 @@ export default {
 }
 </script>
 
-<style>
-
+<style scoped>
+.label{
+    background-color: #05164D;
+    color: #FFF;
+}
+.label:hover{
+    color: #FFF;
+}
 </style>

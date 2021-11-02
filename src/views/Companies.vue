@@ -1,7 +1,7 @@
 <template>
   <div>
     <Message :msg="this.notification.msg" :status="this.notification.status"/>
-    <b-button label="Adicionar voo" type="is-primary" size="is-medium" @click="isCardModalActive = true" />
+    <b-button label="Adicionar voo" class="btn-col" icon-left="plus" size="is-medium" @click="isCardModalActive = true" />
     <b-modal v-model="isCardModalActive" :width="640">
       <form action="" @submit="saveFlight">
         <div class="modal-card" style="width: auto">
@@ -118,7 +118,7 @@
                 <b-input type="number" placeholder="0,00" :min=0 :step=0.01 v-model="price" required></b-input>
               </b-field>
               <b-field label="Documento do voo" class="column">
-                <b-field class="file is-primary" :class="{'has-name': !!file}">
+                <b-field class="file is-dark" :class="{'has-name': !!file}">
                   <b-upload v-model="file" class="file-label" rounded>
                     <span class="file-cta">
                       <b-icon class="file-icon" icon="upload"></b-icon>
@@ -129,7 +129,7 @@
               </b-field>
             </div>
             <b-field label="Taxa" class="mx-3">
-              <b-slider :custom-formatter="(val) => val + '%'" :min=1 :step=0.01 :max=2 :tooltip="false" indicator required v-model="tax"></b-slider>
+              <b-slider :custom-formatter="(val) => val + '%'" :min=1 :step=0.01 :max=2 :tooltip="false" type="is-link" indicator required v-model="tax"></b-slider>
             </b-field>
           </section>
           <footer class="modal-card-foot is-justify-content-end">
@@ -220,3 +220,12 @@ export default {
   },
 }
 </script>
+<style>
+.btn-col{
+    background-color: #05164D;
+    color: #FFF;
+}
+.btn-col:hover{
+    color: #FFF;
+}
+</style>
