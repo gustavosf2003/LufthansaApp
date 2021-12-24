@@ -141,18 +141,18 @@
         </div>
       </form>
     </b-modal>
-    <Companies/>
+    <Routes/>
   </div>
 </template>
 
 <script>
 import Message from "../components/Message.vue"
-import Companies from "../components/tables/Companies.vue"
+import Routes from "../components/tables/Routes.vue"
 export default {
-  title:"Companies",
+  title:"Routes",
   components:{
     Message,
-    Companies
+    Routes
   },
   data() {
     return {

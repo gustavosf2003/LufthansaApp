@@ -57,9 +57,7 @@
 <script>
     export default {
         data() {
-            const data = []
             return {
-                data,
                 isEmpty: false,
                 flights: {},
                 isCardModalActive: false
@@ -71,13 +69,13 @@
                 const flights = await req.json()
                 this.flights = flights
             },
-            async deleteFlight(id){
-                const req = await fetch(`http://localhost:3000/flights/${id}`,{
-                    method: 'DELETE'
-                });
-                const data = await req.json()
-                this.getFlights()
-            }
+            // async deleteFlight(id){
+            //     const req = await fetch(`http://localhost:3000/flights/${id}`,{
+            //         method: 'DELETE'
+            //     });
+            //     // const data = await req.json()
+            //     // this.getFlights()
+            // }
         },
         mounted(){
             this.getFlights()

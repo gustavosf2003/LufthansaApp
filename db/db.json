@@ -16,6 +16,22 @@
       "price": "300",
       "tax": 1.01,
       "id": 1
+    },
+    {
+      "name": "A440",
+      "company": "Lufthansa",
+      "companyCountry": "Alemanha",
+      "origin": "São Paulo",
+      "destiny": "Madagascar",
+      "duration": "17:00",
+      "scale": "sim",
+      "reason": "Troca de aeronave",
+      "scalePlace": "Londres",
+      "scaleTime": "01:00",
+      "currency": "€",
+      "price": "1200",
+      "tax": 1.19,
+      "id": 2
     }
   ],
   "bookings": [

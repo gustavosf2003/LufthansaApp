@@ -1,6 +1,6 @@
 <template>
   <div id="nav">
-    <b-navbar class="back"  shadow transparent active>
+    <b-navbar class="back" shadow transparent active>
         <template #brand>
             <b-navbar-item class="ml-5">
                 <router-link to="/">
@@ -12,13 +12,13 @@
             </b-navbar-item>
         </template>
         <template #end >
-            <b-navbar-item active="false">
+            <b-navbar-item active>
                 <router-link class="subItems" to="/">Home</router-link>
             </b-navbar-item>
-            <b-navbar-item active="false"> 
-                <router-link class="subItems" to="/companies">Companies</router-link>
+            <b-navbar-item active> 
+                <router-link class="subItems" to="/routes">Rotas</router-link>
             </b-navbar-item>
-            <b-navbar-item active="false" class="mr-5">
+            <b-navbar-item active class="mr-5">
                 <router-link class="subItems" to="/master">Master</router-link>
             </b-navbar-item>
         </template>
@@ -44,7 +44,7 @@ name:"Navbar",
     
 }
 .subItems:hover{
-    font-size: 1.05em;
+    font-size: 1.01em;
 }
 .container{
     display: flex;
@@ -52,6 +52,7 @@ name:"Navbar",
 }
 .back{
     background: #05164D;
+    color: white;
     height: 70px;
 }
 </style>
