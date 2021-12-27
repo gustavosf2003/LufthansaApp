@@ -31,13 +31,3 @@ export default {
     }
 }
 </script>
-
-<style scoped>
-.label{
-    background-color: #05164D;
-    color: #FFF;
-}
-.label:hover{
-    color: #FFF;
-}
-</style>

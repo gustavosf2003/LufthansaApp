@@ -1,7 +1,10 @@
 <template>
   <div>
+    <section class="columns ml-3 mt-4">
+      <h1 class="page-title">Criar novas rotas</h1>
+      <b-button label="Adicionar voo" class="btn-outlined ml-5" icon-left="plus" size="is-medium" @click="isCardModalActive = true" />
+    </section>
     <Message :msg="this.notification.msg" :status="this.notification.status"/>
-    <b-button label="Adicionar voo" class="btn-col" icon-left="plus" size="is-medium" @click="isCardModalActive = true" />
     <b-modal v-model="isCardModalActive" :width="640">
       <form action="" @submit="saveFlight">
         <div class="modal-card" style="width: auto">
@@ -34,7 +37,7 @@
               </b-field>
             </div>
             <div >
-                <b-field label="Tempo de voo">
+                <b-field type="is-dark" label="Tempo de voo">
                     <b-select placeholder="Selecione" icon="clock" v-model="duration">
                       <option value="00:00">00:00</option>
                       <option value="01:00">01:00</option>
@@ -74,8 +77,8 @@
                   Não
                 </b-radio-button>
               </b-field>
-              <b-field label="Motivo" class="column" v-if="scale == 'sim'">
-                <b-select placeholder="Tempo de escala" icon="airplane" v-model="reason">
+              <b-field label="Motivo" type="is-dark" class="column no-border" v-if="scale == 'sim'">
+                <b-select placeholder="Tempo de escala" class="no-border" icon="airplane" v-model="reason">
                   <option value="Abastecer a aeronave">Abastecer a aeronave</option>
                   <option value="Troca de aeronave">Troca de aeronave</option>
                   <option value="Troca de companhia">Troca de companhia</option>
@@ -86,25 +89,25 @@
               <b-field class="column is-three-fifths" label="Lugar">
                 <b-input placeholder="ex. Londres" v-model="scalePlace"></b-input>
               </b-field>
-              <b-field label="Tempo" class="column">
-            <b-select placeholder="Selecione" icon="clock" v-model="scaleTime">
-                  <option value="00:00">00:00</option>
-                  <option value="01:00">01:00</option>
-                  <option value="02:00">02:00</option>
-                  <option value="03:00">03:00</option>
-                  <option value="04:00">04:00</option>
-                  <option value="05:00">05:00</option>
-                  <option value="06:00">06:00</option>
-                  <option value="07:00">07:00</option>
-                  <option value="08:00">08:00</option>
-                  <option value="09:00">09:00</option>
-                  <option value="10:00">10:00</option>
-                  <option value="11:00">11:00</option>
-                  <option value="11:00">12:00</option>
-                  <option value="13:00">13:00</option>
-                  <option value="14:00">14:00</option>
-                  <option value="15:00">15:00</option>
-            </b-select>
+              <b-field label="Tempo" type="is-dark" class="column">
+                <b-select placeholder="Selecione" icon="clock" v-model="scaleTime">
+                      <option value="00:00">00:00</option>
+                      <option value="01:00">01:00</option>
+                      <option value="02:00">02:00</option>
+                      <option value="03:00">03:00</option>
+                      <option value="04:00">04:00</option>
+                      <option value="05:00">05:00</option>
+                      <option value="06:00">06:00</option>
+                      <option value="07:00">07:00</option>
+                      <option value="08:00">08:00</option>
+                      <option value="09:00">09:00</option>
+                      <option value="10:00">10:00</option>
+                      <option value="11:00">11:00</option>
+                      <option value="11:00">12:00</option>
+                      <option value="13:00">13:00</option>
+                      <option value="14:00">14:00</option>
+                      <option value="15:00">15:00</option>
+                </b-select>
               </b-field>
             </div>
             <hr>
@@ -118,22 +121,22 @@
                 <b-input type="number" placeholder="0,00" :min=0 :step=0.01 v-model="price" required></b-input>
               </b-field>
               <b-field label="Documento do voo" class="column">
-                <b-field class="file is-dark" :class="{'has-name': !!file}">
-                  <b-upload v-model="file" class="file-label" rounded>
-                    <span class="file-cta">
+                <b-field class="file" :class="{'has-name': !!file}">
+                  <b-upload hoovered v-model="file" class="file-label" rounded>
+                    <span class="file-cta btn">
                       <b-icon class="file-icon" icon="upload"></b-icon>
-                      <span class="file-label">{{ file.name || "Click to upload"}}</span>
+                      <span class="file-label">{{ file.name || "Fazer upload"}}</span>
                     </span>
                   </b-upload>
                 </b-field>
               </b-field>
             </div>
             <b-field label="Taxa" class="mx-3">
-              <b-slider :custom-formatter="(val) => val + '%'" :min=1 :step=0.01 :max=2 :tooltip="false" type="is-link" indicator required v-model="tax"></b-slider>
+              <b-slider :custom-formatter="(val) => val + '%'" :min=1 :step=0.01 :max=2 :tooltip="false" class="slider" indicator required v-model="tax"></b-slider>
             </b-field>
           </section>
           <footer class="modal-card-foot is-justify-content-end">
-            <button type="submit" class="button is-link is-outlined" icon="upload">
+            <button type="submit" class="button btn-outlined" icon="upload">
               Enviar
               <i class="far fa-paper-plane ml-3"></i>
             </button>
@@ -142,6 +145,7 @@
       </form>
     </b-modal>
     <Routes/>
+
   </div>
 </template>
 
@@ -220,12 +224,18 @@ export default {
   },
 }
 </script>
-<style>
-.btn-col{
+<style scoped>
+.btn-outlined:hover{
     background-color: #05164D;
     color: #FFF;
 }
-.btn-col:hover{
-    color: #FFF;
+.btn:hover{
+  color: #FFF;
+  background-color: #05164D;
 }
+.btn{
+  color: #FFF;
+  background-color: #05164D;
+}
+
 </style>

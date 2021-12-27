@@ -20,10 +20,12 @@ export default {
 };
 </script>
 <style>
+/* Geral Adjusts */
 html, body {
   height: 100%;
   margin: 0;
 }
+/* Page Scroll */
 body::-webkit-scrollbar {
   width: 8px;
 }
@@ -33,6 +35,25 @@ body::-webkit-scrollbar-track {
 }
 
 body::-webkit-scrollbar-thumb {
-  background-color: hsl(0, 0%, 71%);    /* color of the scroll thumb */
+  background-color: hsl(0, 0%, 71%);
 }
+
+/* buttons */
+
+.btn-outlined{
+    background-color: #FFF;
+    color: #05164D;
+}
+
+.btn{
+  color: #FFF;
+  background-color: #05164D;
+}
+
+/* titles */
+.page-title{
+  font-size: 2rem;
+}
+
+
 </style>
