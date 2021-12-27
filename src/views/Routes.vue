@@ -144,8 +144,7 @@
         </div>
       </form>
     </b-modal>
-    <Routes/>
-
+    <Routes :addFlight="this.addFlight"/>
   </div>
 </template>
 
@@ -161,6 +160,7 @@ export default {
   data() {
     return {
       isCardModalActive: false,
+      addFlight:0,
       notification: {
         msg: '',
         status: 0
@@ -210,6 +210,7 @@ export default {
         })
         const res = await req.json()
         this.notification.msg = `Voo Nº${res.id} criado com sucesso`
+        this.addFlight = 1
         this.closeModal()
         this.notification.status = 0
       }catch{
