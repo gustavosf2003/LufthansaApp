@@ -15,11 +15,8 @@
             <b-navbar-item active>
                 <router-link class="subItems" to="/">Home</router-link>
             </b-navbar-item>
-            <b-navbar-item active> 
+            <b-navbar-item active class="mr-5"> 
                 <router-link class="subItems" to="/routes">Rotas</router-link>
-            </b-navbar-item>
-            <b-navbar-item active class="mr-5">
-                <router-link class="subItems" to="/master">Master</router-link>
             </b-navbar-item>
         </template>
     </b-navbar>

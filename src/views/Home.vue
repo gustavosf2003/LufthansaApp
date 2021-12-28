@@ -1,8 +1,6 @@
 <template>
   <div>
-    <h1>home</h1>
-    <b-tag type="is-info">First</b-tag>
-    <b-tag type="is-info">Second</b-tag>
+    <h1>Dashboard</h1>
   </div>
 </template>
 

@@ -4,7 +4,7 @@
       <h1 class="page-title">Criar novas rotas</h1>
       <b-button label="Adicionar voo" class="btn-outlined ml-5" icon-left="plus" size="is-medium" @click="isCardModalActive = true" />
     </section>
-    <Message :msg="this.notification.msg" :status="this.notification.status"/>
+    <Message :msg="notification.msg" :status="notification.status"/>
     <b-modal v-model="isCardModalActive" :width="640">
       <form action="" @submit="saveFlight">
         <div class="modal-card" style="width: auto">
@@ -144,18 +144,72 @@
         </div>
       </form>
     </b-modal>
-    <Routes :addFlight="this.addFlight"/>
+    <section class="mt-3 aaa">
+        <div class="table-container" v-if="flights.length > 0">
+            <table class="table is-striped is-hoverable is-fullwidth" >
+            <thead>
+                <tr>
+                <th>ID</th>
+                <th>Avião</th>
+                <th>Destino</th>
+                <th>Companhia</th>
+                <th>Sede</th>
+                <th>Duração</th>
+                <th>Escala</th>
+                <th>Valor</th>
+                <th>Taxa</th>
+                <th>Apagar</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr v-for="f in flights" :key="f.id">
+                <th>{{ f.id  }}</th>
+                <td class="is-uppercase">{{ f.name  }}</td>
+                <td class="is-capitalized">{{ f.destiny  }}</td>
+                <td class="is-capitalized">{{ f.company  }}</td>
+                <td class="is-capitalized">{{ f.companyCountry  }}</td>
+                <td>
+                    <span class="tag label">{{ f.duration}} h</span>
+                </td>
+                <td>
+                    <span>
+                        <b-tooltip type="is-warning" :label="`${f.scaleTime}h (${f.scalePlace}) - ${f.reason}`" position="is-top">
+                            <b-icon
+                                pack="fas"
+                                :icon="f.scale === 'sim' ? 'check' : 'times'">
+                            </b-icon>
+                        </b-tooltip>
+                    </span>
+                </td>
+                <td>
+                    <span class="tag label">{{ f.currency + ' ' +  f.price }}</span>
+                </td>
+                <td>{{ f.tax  }}</td>
+                <td>
+                    <button @click="deleteFlight(f.id)" class="button is-danger is-outlined is-small">
+                        <span class="icon is-small">
+                        <i class="fas fa-times"></i>
+                        </span>
+                    </button>
+                </td>
+                </tr>
+            </tbody>
+            </table>
+        </div>
+    </section>
+    <Emptybox title="Ainda não possui nenhuma rota." subtitle="Adicione uma a qualquer momento" v-if="flights.length == 0"/>
   </div>
 </template>
 
 <script>
 import Message from "../components/Message.vue"
-import Routes from "../components/tables/Routes.vue"
+import Emptybox from "../components/Emptybox.vue"
+
 export default {
   title:"Routes",
   components:{
     Message,
-    Routes
+    Emptybox
   },
   data() {
     return {
@@ -180,6 +234,7 @@ export default {
       price: 0,
       tax: 0,
       flights: {},
+      isEmpty: false,
     }
   },
   methods:{
@@ -210,19 +265,56 @@ export default {
         })
         const res = await req.json()
         this.notification.msg = `Voo Nº${res.id} criado com sucesso`
-        this.addFlight = 1
+        this.name = '',
+        this.company = '',
+        this.companyCountry = '',
+        this.origin = '',
+        this.destiny = '',
+        this.duration = '',
+        this.scale = '',
+        this.reason = '',
+        this.scalePlace = '',
+        this.scaleTime = '',
+        this.currency = '',
+        this.file.name = '',
+        this.price = '',
+        this.tax = '',
         this.closeModal()
         this.notification.status = 0
+        this.getFlights()
       }catch{
         this.closeModal()
         this.notification.msg = "OOPS! Ocorreu um erro ao criar o voo"
         this.notification.status = 1
       }
     },
+    async getFlights(){
+        const req = await fetch("http://localhost:3000/flights")
+        const data = await req.json()
+        this.flights = data
+    },
+    async deleteFlight(id){
+        try{
+            const req = await fetch(`http://localhost:3000/flights/${id}`,{
+                method: "DELETE"
+            })
+            const data = await req.json()
+            console.log(data)
+            this.getFlights()
+            this.notification.msg = `Voo Nº${id} deletado com sucesso`
+            this.notification.status = 1
+        }catch{
+            this.notification.msg = `Oops!!  Erro ao apagar rota de voo`
+            this.notification.status = 1
+        }
+    },
     closeModal(){
       this.isCardModalActive =  false
     }
   },
+  mounted(){
+      this.getFlights()
+  }
 }
 </script>
 <style scoped>
@@ -237,6 +329,16 @@ export default {
 .btn{
   color: #FFF;
   background-color: #05164D;
+}
+td,th{
+    text-align: center !important;
+}
+.label{
+    background-color: #05164D;
+    color: #FFF;
+}
+.label:hover{
+    color: #FFF;
 }
 
 </style>
